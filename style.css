@@ -9,6 +9,12 @@ hr{
     
 }
 .grid-body{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.row{
     display: flex;
     justify-content: center;
 }
@@ -16,6 +22,9 @@ hr{
 .letter{
     height: 45px;
     width: 45px;
-    border: 3px solid;
-    margin: 10px;
+    border: 3px solid #ccc;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
