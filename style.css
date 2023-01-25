@@ -28,3 +28,11 @@ hr{
     justify-content: center;
     align-items: center;
 }
+
+.loading-header{
+    visibility: hidden;
+}
+
+.show{
+    visibility: visible;
+}

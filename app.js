@@ -1,22 +1,56 @@
 //variables
 const letters = document.querySelectorAll('.letter');
 const answer_length = 5;
+const loadingDiv = document.querySelector('.loading-header')
 console.log(letters)
 
 async function init(){
     let currentGuess = "";
+    let currentRow = 0;
+
+    const res = await fetch('https://words.dev-apis.com/word-of-the-day');
+    const resObj = await res.json();
+    //destructuring = const { word } = await res.json()
+    const word = resObj.word.toUpperCase();
+    console.log(word)
 
     function addLetter(letter){
         //setting answer length instead of 5 here to be clear in code
         if(currentGuess.length < answer_length){
+            //add letter to the end 
             currentGuess+=letter;
         } else{
+            //replaces the last letter
             currentGuess = currentGuess.substring(0, currentGuess.length-1) + letter;
         }
-
-        letters[currentGuess.length - 1].innerText = letter;
+        
+        letters[answer_length * currentRow + currentGuess.length - 1].innerText = letter;
     }
 
+    async function commit(){
+        if(currentGuess.length != answer_length){
+            //do nothing
+            return;
+        } else {
+            //TODOneed to validate word
+
+            //TODO marking 'correct' 'wrong' 'close'
+            currentRow++;
+            currentGuess = '';
+        }
+    }
+
+    function backspace(){
+        currentGuess = currentGuess.substring(0, currentGuess.length - 1 )
+        letters[answer_length * currentRow + currentGuess.length].innerText = ''
+    }
+    
+    function setLoading(isLoading){
+        console.log(isLoading)
+        loadingDiv.classList.toggle('show', !isLoading)
+    }
+
+    
     document.addEventListener('keydown', function handleKeyPress(e){
         const action = e.key;
         console.log(action)
