@@ -36,3 +36,15 @@ hr{
 .show{
     visibility: visible;
 }
+
+.correct{
+    background-color: green;
+}
+
+.incorrect{
+    background-color: grey;
+}
+
+.close{
+    background-color: yellow;
+}
